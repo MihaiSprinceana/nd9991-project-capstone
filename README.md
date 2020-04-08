@@ -13,9 +13,13 @@ Execute: sh update-stack.sh stackName stackConfiguration.yml params.json\
 Ex for VPC: ./update-stach.sh CapstoneStackVpc vpc/vpc.yml vpc/vpc-parameters.json \
 Ex for Servers: ./update-stack.sh CapstoneStackServers servers/server.yml servers/server-parameters.json
 
+## Stack order creation:
+1. VPC
+2. EKS
+3. ECR
+
+
+
 ## Notes
 
-Update the params accordincly to your needs.\
-Don't forget to update the email in the server-parameters.json and the bucket id ( where sits the app files)
-
-
+Update the params accordincly to your needs in all "-parameters.json" files.\

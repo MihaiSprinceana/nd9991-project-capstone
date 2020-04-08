@@ -1,0 +1,38 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Deploys an ECR Repository with IAM user/role permissions.
+Parameters:
+  EnvironmentName:
+    Description: An environment name that will be prefixed to resource names
+    Type: String
+  ECRAdminArns:
+    Default: ""
+    Description: "[OPTIONAL] Comma separated list of IAM user/role Amazon Resource Names (ARNs) to be granted read/write access to the ECR Repository"
+    Type: CommaDelimitedList
+
+Resources:
+  CapstoneECR: 
+    Type: AWS::ECR::Repository
+    Properties: 
+      RepositoryName: !Sub "${EnvironmentName}"
+      RepositoryPolicyText: 
+        Version: "2012-10-17"
+        Statement: 
+          - 
+            Sid: AllowPushPull
+            Effect: Allow
+            Principal: 
+              AWS: !Ref ECRAdminArns
+            Action: 
+              - "ecr:GetDownloadUrlForLayer"
+              - "ecr:BatchGetImage"
+              - "ecr:BatchCheckLayerAvailability"
+              - "ecr:PutImage"
+              - "ecr:InitiateLayerUpload"
+              - "ecr:UploadLayerPart"
+              - "ecr:CompleteLayerUpload"
+Outputs:
+  ECR: 
+        Description: A reference to the created ECR
+        Value: !Ref CapstoneECR
+        Export:
+          Name: !Sub ${EnvironmentName}-ECR

@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: $APP-deployment-$TARGET_ROLE
+  labels:
+    app: $APP
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: $APP-$TARGET_ROLE
+      role: $TARGET_ROLE
+  template:
+    metadata:
+      labels:
+        app: $APP-$TARGET_ROLE
+        role: $TARGET_ROLE
+    spec:
+      containers:
+      - name: $APP-container
+        image: $DOCKER_REGISTRY/$IMAGE_TAG
+        ports:
+        - containerPort: 80
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+      imagePullSecrets:
+      - name: aws-ecr

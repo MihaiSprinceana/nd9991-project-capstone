@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: $APP-test-$TARGET_ROLE
+  labels:
+    app: $APP
+spec:
+  type: LoadBalancer
+  selector:
+    app: $APP-$TARGET_ROLE
+    role: $TARGET_ROLE
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP

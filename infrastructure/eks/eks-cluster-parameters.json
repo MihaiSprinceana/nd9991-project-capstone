@@ -1,0 +1,34 @@
+[
+	{
+		"ParameterKey": "EnvironmentName",
+		"ParameterValue": "capstone"
+	},
+	{
+		"ParameterKey": "NodeInstanceType",
+		"ParameterValue": "t2.medium"
+	},
+	{
+		"ParameterKey": "QSS3BucketName",
+		"ParameterValue": "aws-quickstart"
+	},
+	{
+		"ParameterKey": "QSS3KeyPrefix",
+		"ParameterValue": "quickstart-amazon-eks/"
+	},
+	{
+		"ParameterKey": "QSS3BucketRegion",
+		"ParameterValue": "eu-west-2"
+	},
+	{
+		"ParameterKey": "RemoteAccessCIDR",
+		"ParameterValue": "86.120.33.236/32"
+	},
+	{
+		"ParameterKey": "KeyPairName",
+		"ParameterValue": "dondrog-ssh-key-pair"
+	},
+	{
+		"ParameterKey": "AdditionalEKSAdminArns",
+		"ParameterValue": "arn:aws:iam::103332013575:user/jenkins"
+	}
+]

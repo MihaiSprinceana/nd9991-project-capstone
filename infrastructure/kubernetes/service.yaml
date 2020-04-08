@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: $APP-service
+  labels:
+    app: $APP
+    env: prod
+spec:
+  type: LoadBalancer
+  selector:
+    app: $APP-$TARGET_ROLE
+    role: $TARGET_ROLE
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
